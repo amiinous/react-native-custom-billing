@@ -1,6 +1,26 @@
+const InAppBillingBridge =
+  require("react-native").NativeModules.RNCustomBilling;
 
-import { NativeModules } from 'react-native';
+class InAppBilling {
+  static open() {
+    return InAppBillingBridge.open();
+  }
 
-const { RNCustomBilling } = NativeModules;
+  static close() {
+    return InAppBillingBridge.close();
+  }
 
-export default RNCustomBilling;
+  static purchase(sku, developerPayload = null, rcRequest = null) {
+    return InAppBillingBridge.purchase(sku, developerPayload, rcRequest);
+  }
+
+  static consume(sku) {
+    return InAppBillingBridge.consume(sku);
+  }
+
+  static loadOwnedItems() {
+    return InAppBillingBridge.loadOwnedItems();
+  }
+}
+
+export default InAppBilling;
